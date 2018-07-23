@@ -143,6 +143,6 @@ echo "Event Hub namespace should be $AZ_EVENTHUB_NAMESPACE, Event Hub name of $A
 echo "Back on Diagnostic settings under LOG select DataPlaneRequests, MongoRequests, QueryRuntimeStatistics"
 echo "On METRIC select Requests"
 echo "Finally, select Save at the top"
-echo "It may take one or two hours before Diagnostic logs begin arriving"
+echo "It may take one or two hours before Diagnostic logs begin arriving.  However, you can perform the next steps immediately to build and run the app."
 echo
 echo "Setup complete. You'll now need to build and run the application: dotnet clean;dotnet build;dotnet run"
