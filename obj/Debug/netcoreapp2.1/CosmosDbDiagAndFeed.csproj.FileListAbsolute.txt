@@ -1,0 +1,12 @@
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/cosmosDbDiagAndFeedSettings.json
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.deps.json
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.runtimeconfig.json
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.runtimeconfig.dev.json
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.dll
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/bin/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.pdb
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.csprojAssemblyReference.cache
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.csproj.CoreCompileInputs.cache
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.AssemblyInfoInputs.cache
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.AssemblyInfo.cs
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.dll
+/Users/tamhuynh/Desktop/CosmosDbDiagAndFeed/obj/Debug/netcoreapp2.1/CosmosDbDiagAndFeed.pdb

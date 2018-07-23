@@ -1,0 +1,13 @@
+{
+ "az_storage_account":"mycosmossa201807230007",
+ "az_storage_blob_container":"mycosmossacontainer",
+ "az_storage_account_connection_string":"BlobEndpoint=https://mycosmossa201807230007.blob.core.windows.net/;SharedAccessSignature=se=2030-01-01&sp=rwdlac&spr=https&sv=2018-03-28&ss=b&srt=sco&sig=d5ifG5VcIYmfrO9eQRXuUIPLrk6v1ErVlNqDv5k3/f4%3D",
+ "az_event_hub_name" : "mycosmoseh201807230007",
+ "az_event_hub_connection_string":"Endpoint=sb://mycosmosehns201807230007.servicebus.windows.net/;SharedAccessKeyName=mycosmossas201807230007;SharedAccessKey=ummU07a1C8mliao4A7mBArOXdfIlntriKCjtGVvqIzg=;EntityPath=mycosmoseh201807230007",
+ "az_local_logs_dir" : "/tmp/goatse",
+ "az_cosmos_uri" : "https://mycosmosdbacct201807230007.documents.azure.com:443/",
+ "az_cosmos_key" : "n1L9wBXI6bzxRMTzmrbNIv7bJvj7kW5BsTCAHxoVGFo4Fg6febL8G1XGVbtZfEPY17e9BCGYEbBJsiaHD7spMA==",
+ "az_cosmos_db_name" : "mycosmosdbname201807230007",
+ "az_cosmos_collection_name" : "mycosmosdbcollectionname201807230007",
+ "az_cosmos_lease_collection_name" : "mycosmosdbleasecollectionname201807230007"  
+ }

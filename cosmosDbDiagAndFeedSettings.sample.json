@@ -1,0 +1,14 @@
+{
+    "az_storage_account":"",
+    "az_storage_blob_container":"",
+    "az_storage_account_connection_string":"",
+    "az_event_hub_name" : "",
+    "az_event_hub_connection_string":"",
+    "az_local_logs_dir" : "",
+    "az_cosmos_uri" : "",
+    "az_cosmos_key" : "",
+    "az_cosmos_db_name" : "",
+    "az_cosmos_collection_name" : "",
+    "az_cosmos_lease_collection_name" : ""  
+    }
+   
