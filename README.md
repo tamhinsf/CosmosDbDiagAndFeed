@@ -329,9 +329,7 @@ If you're happy with the results, you can optionally publish CosmosDbDiagAndFeed
 
 ***LifetimeEventsHostedService.cs*** hosts the service responsible for connecting to the Azure Cosmos DB change feed. It contains event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
 
-*** DocumentFeedObserver.cs*** and *** DocumentFeedObserverFactory.cs*** contain the code used to access the change feed, which is invoked inside OnStarted within ***LifetimeEventsHostedService.cs***.  ***ProcessEventsAsync*** inside of ***DocumentFeedObserver.cs*** contains the actual code to read and write the change feed to a local file. As such, ***ProcessEventsAsync*** is a great place to author your own custom action.     
-
-***LifetimeEventsHostedService.cs*** contains the code that manages the lifecycle of the ***CosmosDbDiagAndFeed***.  There are event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
+***DocumentFeedObserver.cs*** and ***DocumentFeedObserverFactory.cs*** contain the code used to access the change feed, which is invoked inside OnStarted within ***LifetimeEventsHostedService.cs***.  ***ProcessEventsAsync*** inside of ***DocumentFeedObserver.cs*** contains the actual code to read and write the change feed to a local file. As such, ***ProcessEventsAsync*** is a great place to author your own custom action.     
 
 ## Acknowledgements
 
