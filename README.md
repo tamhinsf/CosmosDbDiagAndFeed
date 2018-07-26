@@ -1,6 +1,6 @@
 # Azure Cosmos DB - Monitor and Audit Activity, and Access the Change Feed
 
-CosmosDbDiagAndFeed enables you to monitor and audit [Azure Cosmos DB](https://aka.ms/cosmosdb) activity and access a collection's change feed.  It's easy to download Cosmos DB diagnostics logs and the contents of a collection's change feed to a Windows, macOS, or Linux computer.  
+CosmosDbDiagAndFeed enables you to monitor and audit [Azure Cosmos DB](https://aka.ms/cosmosdb) activity and access a collection's change feed.  It's easy to download Cosmos DB diagnostics logs and a collection's change feed to a Windows, macOS, or Linux computer.  
 
 Want to do more?  No problem!  Feel free to use our project and source code as a starter kit.   
 
@@ -12,22 +12,22 @@ Azure Cosmos DB enables you to:
 
 Our CosmosDbDiagAndFeed project has two components
 
-*  A script to setup the resources in Azure to support Cosmos DB diagnostic log streaming and change feed access
+*  A script to setup the resources in Azure to support Cosmos DB diagnostic log streaming and access to the change feed
 *  A .NET Core application to download diagnostic logs and the change feed content to a computer
 
-***setupCosmosDbDiagAndFeed&#46;sh*** is a Bash shell script that automates the creation and configuration of the Azure resources required to support Cosmos DB diagnostic log streaming as well as change feed access.
+***setupCosmosDbDiagAndFeed&#46;sh*** is a Bash shell script that automates the creation and configuration of the Azure resources required to support Cosmos DB diagnostic log streaming and access to the change feed
 
 Our Azure CLI powered script:
 
 * Creates an Azure Resource Group that will contain all the Azure-based resources required to support the integration
 * Creates a Cosmos DB instance, database, and collection
-* Creates a second Cosmos DB collection (known as a lease collection), which will be used to manage the Cosmos DB synchronization state of the client application
+* Creates a second Cosmos DB collection (known as a lease collection), which will be used to manage the synchronization state of the client application
 * Creates an Event Hub namespace and Event Hub  
 * Creates and configures an Azure Blob Storage account, and within that Storage account a Storage Container, which will be used to manage the Event Hub synchronization state of the client application
 * Generates Shared Access Signatures for the Event Hub and Blob Storage account, eliminating the need to use master account keys in the client application
 * Generates a configuration file (***cosmosDbDiagAndFeedSettings&#46;json***) storing all connection parameters required by the client application.
 
-You'll need to only perform two manual steps in the Azure Portal: within your Cosmos DB instance, you'll enable diagnostic logging and then set it up to use the Event Hub and Event Hub Namespace
+You'll need to only perform two manual steps in the Azure Portal: within your Cosmos DB instance, you'll enable and configure diagnostic logging and then set it up to use the Event Hub namespace and Event Hub indicated above.
 
 NOTE: If you don't want to use our setup script to create and configure the required Azure resources, no problem!  We'll describe manual the steps required and the settings you need to place into ***cosmosDbDiagAndFeedSettings&#46;json***
 
@@ -319,9 +319,19 @@ If you're happy with the results, you can optionally publish CosmosDbDiagAndFeed
 
 ## Customizing CosmosDbDiagAndFeed
 
-***LifetimeEventsHostedService.cs*** contains the code that manages the lifecycle of the ***CosmosDbDiagAndFeed***.  There are event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
+### Within the EventHubUtils folder
+
+***LifetimeEventsHostedService.cs*** hosts the service responsible for connecting to Azure Event Hub.  It contains event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
 
 ***SimpleEventProcessor.cs*** manages the processing of the activity logs placed into Azure Event Hub.  It is registered within ***LifetimeEventsHostedService*** inside OnStarted and un-registerered through OnStopping.  Within ***SimpleEventProcessor*** ***ProcessEventsAsync*** is responsible for iterating over the Azure activity logs placed by Azure Monitor into Event Hub and writing them to a local file.   As such, ***ProcessEventsAsync*** is a great place to author your own custom action.   
+
+### Within the CosmosDbUtils folder
+
+***LifetimeEventsHostedService.cs*** hosts the service responsible for connecting to the Azure Cosmos DB change feed. It contains event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
+
+*** DocumentFeedObserver.cs*** and *** DocumentFeedObserverFactory.cs*** contain the code required to access the change feed, which is invoked using OnStarted within ***LifetimeEventsHostedService.cs***.  ***ProcessEventsAsync***inside of *** DocumentFeedObserver.cs*** contains the actual code to read and write the change feed to a local file. As such, ***ProcessEventsAsync*** is a great place to author your own custom action.     
+
+***LifetimeEventsHostedService.cs*** contains the code that manages the lifecycle of the ***CosmosDbDiagAndFeed***.  There are event handlers where you can add additional activities that occur upon startup (OnStarted), during shut down (OnStopping), and after shut down (OnStop). 
 
 ## Acknowledgements
 
