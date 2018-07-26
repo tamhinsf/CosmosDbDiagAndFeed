@@ -135,14 +135,4 @@ printf '{\n "az_storage_account":"%s",\n "az_storage_blob_container":"%s",\n "az
      "$AZ_EVENTHUB_NAME" "$AZ_EVENTHUB_CONNECTION_STRING" "$AZ_MONITOR_LOG_FILE_PATH" \
      "$AZ_COSMOSDB_URI" "$AZ_COSMOSDB_PRIMARY_KEY" "$AZ_COSMOSDB_DB_NAME" "$AZ_COSMOSDB_COLLECTION_NAME" "$AZ_COSMOSDB_LEASE_COLLECTION_NAME" > cosmosDbDiagAndFeedSettings.json
 
-echo "Important - you must now enable diagnostics for your Cosmos DB instance in the Azure Portal."
-echo "Go to https://portal.azure.com, navigate to the $AZ_RESOURCE_GROUP resource group and $AZ_COSMOSDB_ACCOUNT_NAME Cosmos DB account."
-echo "Scroll down to MONITORING, select Diagnostic settings, and Turn on diagnostics"
-echo "Give your Diagnostic settings a name, Stream to an event hub, Event hub -> Configure"
-echo "Event Hub namespace should be $AZ_EVENTHUB_NAMESPACE, Event Hub name of $AZ_EVENTHUB_NAME, and policy name of RootManageSharedAccessKey.  Click OK at the bottom"
-echo "Back on Diagnostic settings under LOG select DataPlaneRequests, MongoRequests, QueryRuntimeStatistics"
-echo "On METRIC select Requests"
-echo "Finally, select Save at the top"
-echo "It may take one or two hours before Diagnostic logs begin arriving.  However, you can perform the next steps immediately to build and run the app."
-echo
 echo "Setup complete. You'll now need to build and run the application: dotnet clean;dotnet build;dotnet run"

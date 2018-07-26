@@ -24,7 +24,7 @@ Our Azure CLI powered script:
 * Creates a second Cosmos DB collection (known as a lease collection), which will be used to manage the Cosmos DB synchronization state of the client application
 * Creates an Event Hub namespace and Event Hub  
 * Creates and configures an Azure Blob Storage account, and within that Storage account a Storage Container, which will be used to manage the Event Hub synchronization state of the client application
-* Generates Shared Access Signatures for the Event Hub, eliminating the need to use master account keys in the client application
+* Generates Shared Access Signatures for the Event Hub and Blob Storage account, eliminating the need to use master account keys in the client application
 * Generates a configuration file (***cosmosDbDiagAndFeedSettings&#46;json***) storing all connection parameters required by the client application.
 
 You'll need to only perform two manual steps in the Azure Portal: within your Cosmos DB instance, you'll enable diagnostic logging and then set it up to use the Event Hub and Event Hub Namespace
@@ -147,7 +147,7 @@ The process below describes the steps required to manually configure the Azure r
 * Navigate to the folder containing your local clone of this repository
    * Create a copy of the file name ***cosmosDbDiagAndFeedSettings&#46;sample&#46;json*** named ***cosmosDbDiagAndFeedSettings&#46;json*** 
    * ***cosmosDbDiagAndFeedSettings&#46;json***  will contain the connection parameters required by the client application to connect to Azure
-   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /azmo/CosmosDbDiagAndFeed
+   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /cosmosdiagfeed/CosmosDbDiagAndFeed
 
 We'll assume that you have a working familiarity with how to access the Azure portal and setup resources.   The steps below are meant to provide you high-level guidance. 
 
@@ -194,8 +194,24 @@ Azure Event Hubs and Storage Accounts support the use of Shared Access Signature
    * Click Generate SAS and connection string.  Copy the Connection string into the value of ***az_storage_account_connection_string*** in ***cosmosDbDiagAndFeedSettings&#46;json***
  
 ## Build and Run CosmosDbDiagAndFeed
+*  Before you can build and run CosmosDbDiagAndFeed, you need to configure Cosmos DB to output diagnostic logs into your Event Hub.  Perform these steps - even if you used our setupCosmosDbDiagAndFeed&#46;sh setup script
+   * Navigate to the Azure Portal at https://portal.azure.com
+   * Go to your Resource Group (mycosmosrg is the default value in the setupCosmosDbDiagAndFeed&#46;sh setup script)
+   * Open the Event Hub account
+      * Take note of the Event Hub namespace name and Event Hub name
+   * Open the Cosmos DB account
+   * In the pane that contains Overview, scroll down to MONITORING, and select Diagnostic settings
+   * Turn on diagnostics
+   * On the Diagnostic settings page
+      * Provide a name, check Stream to an event hub, then click Event hub -> Configure
+         * Select the Event Hub namespace and Event Hub you noted from before
+         * Event hub policy name should be RootManagedSharedAccessKey
+         * Click OK
+      * Under Log, check all three items 
+      * Under Metric, check Requests
+      * Click Save at the top
 *  Navigate to the folder containing your local clone of this repository
-   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /azmo/CosmosDbDiagAndFeed
+   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /cosmosdiagfeed/CosmosDbDiagAndFeed
 *  Make sure that ***CosmosDbDiagAndFeedSettings&#46;json***, as created by ***setupAzureMonitor&#46;sh*** is present.  If you manually setup the supporting Azure resources, make sure this file is present and contains the values listed the section "Setup Azure Environment manually". 
 *  Run these commands to build and run the client application that will download Activity logs to your computer:
     *  dotnet clean
@@ -286,7 +302,7 @@ info: CosmosDbDiagAndFeed.EventHubUtils.LifetimeEventsHostedService[0]
 
 If you're happy with the results, you can optionally publish CosmosDbDiagAndFeed into a self-contained application.  This will enable you to run CosmosDbDiagAndFeed from another folder or  another computer of the same operating system.
 *  Navigate to the folder containing your local clone of this repository
-   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /azmo/CosmosDbDiagAndFeed
+   * If you used our Easy Setup - Azure Virtual Machine option, the path to the local clone will be /cosmosdiagfeed/CosmosDbDiagAndFeed
 *  Determine the directory you want to publish and install CosmosDbDiagAndFeed into.
 *  Find the "Runtime Identifier" (RID) that corresponds to your operating system environment on the following website https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
    * Here are the RIDs for some popular operating systems
